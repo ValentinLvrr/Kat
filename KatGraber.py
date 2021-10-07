@@ -41,7 +41,8 @@ def main():
         colors = {"red" : "\033[38;2;255;0;0m", 
                 "blue" : "\033[38;2;56;152;219m", 
                 "yellow" : "\033[38;2;255;255;0m",
-                "white" : "\033[38;2;255;255;255m"}
+                "white" : "\033[38;2;255;255;255m",
+                "green" : "\033[38;2;46;204;113m"}
 
         red = colors['red']
 
@@ -50,6 +51,8 @@ def main():
         yellow = colors['yellow']
         
         white = colors['white']
+
+        green = colors['green']
 
     McSkinGraber = """
      /$$   /$$             /$$            /$$$$$$                     /$$                          
@@ -66,6 +69,7 @@ def main():
     def clear():
         os.system("cls")
 
+
     def title():
         print(Fade.Vertical(Colors.blue_to_white, center(McSkinGraber)))
         print(Fade.Horizontal(Colors.blue_to_white, center("\nValentin.Lvr")))
@@ -77,13 +81,14 @@ def main():
     title()
 
     print("\n\n\n\n\n\n\n") #Saut de ligne
-    username = input(Col.blue+" Pseudo > "+Col.white)
+    username = input(Col.blue+" Username > "+Col.white)
     uuid = sg.get_uuid(user=username)
 
+    os.system("title Kat Graber - Downloading")
     clear()
     title()
     print("\n\n\n\n\n\n\n") #Saut de ligne
-    print(Col.blue+f" UUID de "+Col.white+username+": "+Col.yellow+uuid)
+    print(Col.blue+f" UUID of "+Col.white+username+" -> "+Col.yellow+uuid)
 
     skin = sg.get_skin(user=username)
 
@@ -91,7 +96,9 @@ def main():
     with open(username + ".png", 'wb') as handler:
         handler.write(img_data)
 
-    print(Col.yellow+" Skin téléchargé")
+    os.system("title Kat Graber - Downloaded")
+    print("")
+    print(Col.green + " Skin downloaded" + Col.white + " - " + Col.blue + "Return in the script folder ;)")
     input()
     main()
 
