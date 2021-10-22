@@ -1,14 +1,34 @@
-from pyfade import Fade, Colors
-from pycenter import center
+import time
 import requests
 import json
 import os
 
-def main():
+try:
+    from pystyle import Add, Center, Anime, Colors, Colorate, Write, System
+except:
+    os.system("pip3 install pystyle")
+    from pystyle import Add, Center, Anime, Colors, Colorate, Write, System
 
-    os.system("mode 150, 50")
-    os.system("title Kat Graber - Valentin.Lvr")
+def clear():
+    os.system('cls' if os.name=='nt' else 'clear')
 
+banner = r"""
+ ▄▀▀▄ █  ▄▀▀█▄   ▄▀▀▀█▀▀▄ 
+█  █ ▄▀ ▐ ▄▀ ▀▄ █    █  ▐ 
+▐  █▀▄    █▄▄▄█ ▐   █     
+  █   █  ▄▀   █    █      
+▄▀   █  █   ▄▀   ▄▀       
+█    ▐  ▐   ▐   █         
+▐               ▐
+
+  Skin Downloader
+"""[1:]
+
+Anime.Fade(Center.Center(banner), Colors.purple_to_blue, Colorate.Vertical, enter=True)
+
+def main(): # FONCTION PRINCIPALE
+
+    clear()
     
     class skingrabber:
 
@@ -37,7 +57,7 @@ def main():
                 uuid = responsejson["id"]
                 return f"https://crafatar.com/skins/{uuid}"
 
-    class Col:
+    class Col: # COULEURS UwU
         colors = {"red" : "\033[38;2;255;0;0m", 
                 "blue" : "\033[38;2;56;152;219m", 
                 "yellow" : "\033[38;2;255;255;0m",
@@ -54,53 +74,27 @@ def main():
 
         green = colors['green']
 
-    McSkinGraber = """
-     /$$   /$$             /$$            /$$$$$$                     /$$                          
-    | $$  /$$/            | $$           /$$__  $$                   | $$                          
-    | $$ /$$/   /$$$$$$  /$$$$$$        | $$  \__/  /$$$$$$  /$$$$$$ | $$$$$$$   /$$$$$$   /$$$$$$ 
-    | $$$$$/   |____  $$|_  $$_/        | $$ /$$$$ /$$__  $$|____  $$| $$__  $$ /$$__  $$ /$$__  $$
-    | $$  $$    /$$$$$$$  | $$          | $$|_  $$| $$  \__/ /$$$$$$$| $$  \ $$| $$$$$$$$| $$  \__/
-    | $$\  $$  /$$__  $$  | $$ /$$      | $$  \ $$| $$      /$$__  $$| $$  | $$| $$_____/| $$      
-    | $$ \  $$|  $$$$$$$  |  $$$$/      |  $$$$$$/| $$     |  $$$$$$$| $$$$$$$/|  $$$$$$$| $$      
-    |__/  \__/ \_______/   \___/         \______/ |__/      \_______/|_______/  \_______/|__/      
-                                                                                              
-    """
-
-    def clear():
-        os.system("cls")
-
-
-    def title():
-        print(Fade.Vertical(Colors.blue_to_white, center(McSkinGraber)))
-        print(Fade.Horizontal(Colors.blue_to_white, center("\nValentin.Lvr")))
-
-    clear()
 
     sg = skingrabber()
 
-    title()
-
-    print("\n\n\n\n\n\n\n") #Saut de ligne
-    username = input(Col.blue+" Username > "+Col.white)
+    print("")
+    username = input(f"{Col.blue} ~ Username > {Col.white}")
     uuid = sg.get_uuid(user=username)
-
-    os.system("title Kat Graber - Downloading")
-    clear()
-    title()
-    print("\n\n\n\n\n\n\n") #Saut de ligne
-    print(Col.blue+f" UUID of "+Col.white+username+" -> "+Col.yellow+uuid)
+    print("")
+    print(f"{Col.white} ~ {username}'s {Col.blue}UUID -> {Col.yellow}{uuid}")
+    
 
     skin = sg.get_skin(user=username)
 
     img_data = requests.get(skin).content
-    with open(username + ".png", 'wb') as handler:
+    with open(username + ".png", 'wb') as handler: # ON "ECRIT" LE SKIN SUR UN FICHIER .png
         handler.write(img_data)
 
-    os.system("title Kat Graber - Downloaded")
     print("")
-    print(Col.green + " Skin downloaded" + Col.white + " - " + Col.blue + "Return in the script folder ;)")
+    print(f"{Col.green} ~ Skin downloaded\n")
     input()
-    main()
+    clear()
+    quit()
 
 if __name__ == "__main__":
-    main()
+    main() # EXECUTION DE LA FONCTION "MAIN"
