@@ -12,7 +12,7 @@ except:
 def clear():
     os.system('cls' if os.name=='nt' else 'clear')
 
-banner = r"""
+banner = """
  ▄▀▀▄ █  ▄▀▀█▄   ▄▀▀▀█▀▀▄ 
 █  █ ▄▀ ▐ ▄▀ ▀▄ █    █  ▐ 
 ▐  █▀▄    █▄▄▄█ ▐   █     
@@ -22,7 +22,7 @@ banner = r"""
 ▐               ▐
 
   Skin Downloader
-"""[1:]
+"""
 
 Anime.Fade(Center.Center(banner), Colors.purple_to_blue, Colorate.Vertical, enter=True)
 
